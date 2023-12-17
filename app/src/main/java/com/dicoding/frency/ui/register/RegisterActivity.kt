@@ -7,55 +7,27 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
-import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.frency.R
-import com.dicoding.frency.ViewModelFactory
-import com.dicoding.frency.data.Result
 import com.dicoding.frency.databinding.ActivityRegisterBinding
 import com.dicoding.frency.ui.login.LoginActivity
+import com.dicoding.frency.ui.login.UserViewModel
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
-    private val viewModel by viewModels<RegisterViewModel> {
-        ViewModelFactory.getInstance(this)
-    }
+    private lateinit var viewModel : UserViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel = ViewModelProvider(this)[UserViewModel::class.java]
+
         binding.tvLoginHere.setOnClickListener {
             startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
-        }
-
-        viewModel.createUserResult.observe(this) { result ->
-            when(result) {
-                is Result.Loading -> {
-                    binding.overlayLoading.visibility = View.VISIBLE
-                    window.setFlags(
-                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                    )
-                }
-                is Result.Success -> {
-                    binding.overlayLoading.visibility = View.GONE
-                    window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-                    val intent = Intent(this, LoginActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    Toast.makeText(this,
-                        getString(R.string.registration_successful), Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
-                }
-                is Result.Error -> {
-                    binding.overlayLoading.visibility = View.GONE
-                    window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-                    Toast.makeText(this,
-                        getString(R.string.email_is_already_taken), Toast.LENGTH_SHORT).show()
-                }
-            }
+            finish()
         }
 
         validEmail()
@@ -76,9 +48,27 @@ class RegisterActivity : AppCompatActivity() {
             val inputPassword = password.editText?.text.toString()
             val confirmPassword = binding.tiConfirmPasswordRegister.editText?.text.toString()
 
-            if (isUsernameValid(inputUsername) && isNameValid(inputName) && isEmailValid(inputEmail) && isPasswordValid(inputPassword) && confirmPassword.isNotEmpty()) {
-                viewModel.createUser(inputEmail, inputName, inputUsername, inputPassword)
+            if (isUsernameValid(inputUsername) && isNameValid(inputName) && isEmailValid(inputEmail)
+                && isPasswordValid(inputPassword) && confirmPassword.isNotEmpty()) {
 
+                binding.overlayLoading.visibility = View.VISIBLE
+                viewModel.registerUser(inputEmail, inputPassword, inputUsername, inputName)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            // Registrasi berhasil, lakukan tindakan setelah registrasi
+                            binding.overlayLoading.visibility = View.GONE
+
+                            // Lanjutkan ke halaman lain atau tampilkan pesan sukses
+                            Toast.makeText(this,  "Register Successful", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                            finish()
+
+                        } else {
+                            // Registrasi gagal, tampilkan pesan kesalahan
+                            binding.overlayLoading.visibility = View.GONE
+                            Toast.makeText(this, "Registrasi gagal, Email sudah digunakan.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
             }
             else {
                 username.isErrorEnabled = false
@@ -201,5 +191,6 @@ class RegisterActivity : AppCompatActivity() {
     private fun isPasswordValid(password: String): Boolean {
         return password.length >= 8
     }
+
 
 }

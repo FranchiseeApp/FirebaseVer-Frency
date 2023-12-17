@@ -22,8 +22,6 @@ class WishlistFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val wishlistViewModel =
-            ViewModelProvider(this).get(WishlistViewModel::class.java)
 
         _binding = FragmentWishlistBinding.inflate(inflater, container, false)
         val root: View = binding.root

@@ -6,19 +6,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dicoding.frency.data.entity.Franchise
+import com.dicoding.frency.data.entity.FranchiseData
 import com.dicoding.frency.databinding.ItemCarouselHomeBinding
 
-class CarouselHomeAdapter(private val onItemClick: (Franchise) -> Unit) :
-    ListAdapter<Franchise, CarouselHomeAdapter.CarouselViewHolder>(DIFF_CALLBACK) {
+class CarouselHomeAdapter(private val onItemClick: (FranchiseData) -> Unit) :
+    ListAdapter<FranchiseData, CarouselHomeAdapter.CarouselViewHolder>(DIFF_CALLBACK) {
 
     inner class CarouselViewHolder(private val binding: ItemCarouselHomeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Franchise) {
+        fun bind(item: FranchiseData) {
             binding.apply {
                 Glide.with(binding.root)
-                    .load(item.imgUrl[0])
+                    .load(item.images[0])
 //                .diskCacheStrategy(DiskCacheStrategy.NONE )
 //                .skipMemoryCache(true)
                     .into(binding.ivCarousel)
@@ -45,11 +45,11 @@ class CarouselHomeAdapter(private val onItemClick: (Franchise) -> Unit) :
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Franchise>() {
-            override fun areItemsTheSame(oldItem: Franchise, newItem: Franchise): Boolean =
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<FranchiseData>() {
+            override fun areItemsTheSame(oldItem: FranchiseData, newItem: FranchiseData): Boolean =
                 oldItem == newItem
 
-            override fun areContentsTheSame(oldItem: Franchise, newItem: Franchise): Boolean =
+            override fun areContentsTheSame(oldItem: FranchiseData, newItem: FranchiseData): Boolean =
                 oldItem.name == newItem.name
         }
     }

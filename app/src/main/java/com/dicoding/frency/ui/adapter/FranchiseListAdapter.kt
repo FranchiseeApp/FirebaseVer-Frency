@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dicoding.frency.data.entity.Franchise
+import com.dicoding.frency.data.entity.FranchiseData
 import com.dicoding.frency.databinding.FranchiseCardBinding
 
-class FranchiseListAdapter : ListAdapter<Franchise, FranchiseListAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class FranchiseListAdapter : ListAdapter<FranchiseData, FranchiseListAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = FranchiseCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,16 +17,16 @@ class FranchiseListAdapter : ListAdapter<Franchise, FranchiseListAdapter.MyViewH
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val franchiseItem = getItem(position) as Franchise
+        val franchiseItem = getItem(position) as FranchiseData
         holder.bind(franchiseItem)
     }
 
     class MyViewHolder(private val binding: FranchiseCardBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Franchise) {
+        fun bind(item: FranchiseData) {
             binding.tvTitle.text = item.name
-            binding.tvRange.text = item.type[0]
+            binding.tvRange.text = item.category
             Glide.with(binding.root)
-                .load(item.imgUrl[0])
+                .load(item.images[0])
 //                .diskCacheStrategy(DiskCacheStrategy.NONE )
 //                .skipMemoryCache(true)
                 .into(binding.ivFranchise)
@@ -41,12 +41,12 @@ class FranchiseListAdapter : ListAdapter<Franchise, FranchiseListAdapter.MyViewH
         }
     }
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Franchise>() {
-            override fun areItemsTheSame(oldItem: Franchise, newItem: Franchise): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<FranchiseData>() {
+            override fun areItemsTheSame(oldItem: FranchiseData, newItem: FranchiseData): Boolean {
                 return oldItem.name == newItem.name
             }
 
-            override fun areContentsTheSame(oldItem: Franchise, newItem: Franchise): Boolean {
+            override fun areContentsTheSame(oldItem: FranchiseData, newItem: FranchiseData): Boolean {
                 return oldItem == newItem
             }
         }
