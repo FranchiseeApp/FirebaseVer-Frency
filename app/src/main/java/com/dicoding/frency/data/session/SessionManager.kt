@@ -6,6 +6,7 @@ import com.dicoding.frency.data.entity.User
 
 class SessionManager(private val context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+    private val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
     fun saveSession(user: User) {
         val editor = sharedPreferences.edit()
@@ -13,8 +14,10 @@ class SessionManager(private val context: Context) {
         editor.putString("username", user.username)
         editor.putString("email", user.email)
         editor.putString("name", user.name)
-        editor.putString("password", user.password)
+        editor.putString("photoProfileUrl", user.photoProfileUrl)
         editor.putString("role", user.role)
+        editor.putString("gender", user.gender)
+        editor.putString("noTel", user.noTel)
         editor.apply()
     }
 
@@ -23,11 +26,13 @@ class SessionManager(private val context: Context) {
         val username = sharedPreferences.getString("username", null)
         val email = sharedPreferences.getString("email", null)
         val name = sharedPreferences.getString("name", null)
-        val password = sharedPreferences.getString("password", null)
+        val photoProfileUrl = sharedPreferences.getString("photoProfileUrl", null)
         val role = sharedPreferences.getString("role", null)
+        val gender = sharedPreferences.getString("gender", null)
+        val noTel = sharedPreferences.getString("noTel", null)
 
-        return if (userId != null && username != null && email != null && name != null && password != null && role != null) {
-            User(userId, username, email, name, password, role)
+        return if (userId != null && username != null && email != null && name != null && photoProfileUrl != null && role != null && gender != null && noTel != null) {
+            User(userId, username, email, name, photoProfileUrl, role, gender, noTel)
         } else {
             null
         }
@@ -36,6 +41,28 @@ class SessionManager(private val context: Context) {
     fun clearSession() {
         val editor = sharedPreferences.edit()
         editor.clear()
+        editor.apply()
+    }
+
+    fun updateSessionName(name: String) {
+        editor.putString("name", name)
+        editor.apply()
+    }
+
+    // Fungsi untuk memperbarui nomor telepon di session
+    fun updateSessionNoTel(noTel: String) {
+        editor.putString("noTel", noTel)
+        editor.apply()
+    }
+
+    // Fungsi untuk memperbarui gender di session
+    fun updateSessionGender(gender: String) {
+        editor.putString("gender", gender)
+        editor.apply()
+    }
+
+    fun updateSessionPhotoProfile(photoProfileUrl: String) {
+        editor.putString("photoProfileUrl", photoProfileUrl)
         editor.apply()
     }
 }
