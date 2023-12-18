@@ -64,7 +64,7 @@ class FranchiseListAdapter(private val franchiseList: List<FranchiseData>) :
         fun bind(franchiseData: FranchiseData) {
             // Bind data ke elemen UI dalam item franschise_card menggunakan ViewBinding
             binding.tvTitle.text = franchiseData.name
-            binding.tvRange.text = franchiseData.category
+            binding.tvCategory.text = franchiseData.category
             Glide.with(binding.root.context).load(franchiseData.images.firstOrNull()).into(binding.ivFranchise)
         }
     }
