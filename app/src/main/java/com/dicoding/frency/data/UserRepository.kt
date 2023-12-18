@@ -27,7 +27,7 @@ class UserRepository {
                     "photoProfileUrl" to "",
                     "gender" to "",
                     "noTel" to "",
-                    "role" to "franchisor"
+                    "role" to "franchisee"
                 )
 
                 user?.let {
