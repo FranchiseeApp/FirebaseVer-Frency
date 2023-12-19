@@ -1,4 +1,4 @@
-package com.dicoding.frency.ui.adapter
+package com.dicoding.frency.ui.home
 
 import android.content.Intent
 import android.util.Log

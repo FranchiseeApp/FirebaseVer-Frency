@@ -40,12 +40,13 @@ data class FranchiseData(
     val category: String = "",
     val phoneNumber: String = "",
     val franchiseTypes: List<FranchiseItem> = emptyList(),
-    val images: List<String> = listOf<String>("https://picsum.photos/720",
-        "https://picsum.photos/720",
-        "https://picsum.photos/720",
-        "https://picsum.photos/720",
-        "https://picsum.photos/720",
-    ), // atau model lain untuk gambar
+    val images: List<String> = emptyList(),
+//    val images: List<String> = listOf<String>("https://picsum.photos/720",
+//        "https://picsum.photos/720",
+//        "https://picsum.photos/720",
+//        "https://picsum.photos/720",
+//        "https://picsum.photos/720",
+//    ), // atau model lain untuk gambar
     var documentId: String = "",
 ) {
     // Konstruktor tanpa argumen

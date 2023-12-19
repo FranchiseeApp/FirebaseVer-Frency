@@ -14,8 +14,6 @@ import com.dicoding.frency.data.entity.FranchiseData
 import com.dicoding.frency.data.entity.User
 import com.dicoding.frency.data.session.SessionManager
 import com.dicoding.frency.databinding.FragmentHomeBinding
-import com.dicoding.frency.ui.adapter.CarouselHomeAdapter
-import com.dicoding.frency.ui.adapter.FranchiseListAdapter
 import com.dicoding.frency.ui.login.LoginActivity
 import com.dicoding.frency.utils.ZoomOutPageTransformer
 import com.dicoding.frency.utils.showMessage
@@ -56,6 +54,12 @@ class HomeFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Memuat data setiap kali fragment di-resume
+        loadData()
+    }
+
     private fun loadData() {
         val user: User? = sessionManager.getSession()
 
@@ -80,7 +84,8 @@ class HomeFragment : Fragment() {
                     val adapterList = FranchiseListAdapter(franchiseList)
                     recycler.adapter = adapterList
 
-                    carouselHomeAdapter.submitList(franchiseList)
+//                    carouselHomeAdapter.submitList(franchiseList)
+                    carouselHomeAdapter.submitList(DummyData.dataDummy)
 
                     with(binding) {
                         this?.carouselPager?.apply {
