@@ -48,8 +48,6 @@ class FranchisesListActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
                     if (searchFranchise != query) {
-                        // Jika parameter pencarian berbeda dari pencarian sebelumnya
-                        // Membuat intent baru hanya jika pencarian sebelumnya berbeda
                         val intent = Intent(this@FranchisesListActivity, FranchisesListActivity::class.java)
                         intent.putExtra("searchFranchise", query)
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP

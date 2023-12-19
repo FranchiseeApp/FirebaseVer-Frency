@@ -12,12 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.frency.data.entity.FranchiseData
 import com.dicoding.frency.data.entity.FranchiseType
-import com.dicoding.frency.data.entity.User
-import com.dicoding.frency.data.session.SessionManager
 import com.dicoding.frency.databinding.FragmentHomeBinding
 import com.dicoding.frency.ui.detail.DetailActivity
 import com.dicoding.frency.ui.franchiseslist.FranchisesListActivity
-import com.dicoding.frency.ui.login.LoginActivity
 import com.dicoding.frency.utils.ZoomOutPageTransformer
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -26,7 +23,6 @@ class HomeFragment : Fragment() {
     private val carouselHomeAdapter: CarouselHomeAdapter by lazy { CarouselHomeAdapter(::carouselItemClicked) }
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var sessionManager: SessionManager
     private lateinit var typeAdapter: FranchiseTypeAdapter
 
     override fun onCreateView(
@@ -40,8 +36,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        sessionManager = SessionManager(requireContext())
 
         val franchiseNames = listOf(
             FranchiseType("Stand"),
@@ -96,59 +90,52 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadData() {
-        val user: User? = sessionManager.getSession()
+        val db = FirebaseFirestore.getInstance()
+        val franchisesCollection = db.collection("franchises")
 
-        if (user != null) {
-            val db = FirebaseFirestore.getInstance()
-            val franchisesCollection = db.collection("franchises")
+        franchisesCollection
+            .get()
+            .addOnSuccessListener { documents ->
+                val franchiseList = mutableListOf<FranchiseData>()
 
-            franchisesCollection
-                .get()
-                .addOnSuccessListener { documents ->
-                    val franchiseList = mutableListOf<FranchiseData>()
+                for (document in documents) {
+                    val franchiseData = document.toObject(FranchiseData::class.java)
+                    franchiseList.add(franchiseData)
+                }
 
-                    for (document in documents) {
-                        val franchiseData = document.toObject(FranchiseData::class.java)
-                        franchiseList.add(franchiseData)
-                    }
-
-                    val layoutManagerRecommendList = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                    var recyclerRecommend = binding.rvRecommendation
-                    recyclerRecommend.layoutManager = layoutManagerRecommendList
-                    val adapterListRecommend = RecommendationListAdapter(franchiseList)
-                    recyclerRecommend.adapter = adapterListRecommend
+                val layoutManagerRecommendList = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                val recyclerRecommend = binding.rvRecommendation
+                recyclerRecommend.layoutManager = layoutManagerRecommendList
+                val adapterListRecommend = RecommendationListAdapter(franchiseList)
+                recyclerRecommend.adapter = adapterListRecommend
 
 
-                    val layoutManager = GridLayoutManager(binding.root.context, 2)
-                    var recycler = binding.rvFranchise
-                    recycler.layoutManager = layoutManager
-                    val limitedList = franchiseList.subList(0, 6)
-                    val adapterList = FranchiseListAdapter(limitedList)
-                    recycler.adapter = adapterList
+                val layoutManager = GridLayoutManager(binding.root.context, 2)
+                val recycler = binding.rvFranchise
+                recycler.layoutManager = layoutManager
+                val limitedList = franchiseList.subList(0, 6)
+                val adapterList = FranchiseListAdapter(limitedList)
+                recycler.adapter = adapterList
 
-                    carouselHomeAdapter.submitList(franchiseList)
+                carouselHomeAdapter.submitList(franchiseList)
 
-                    with(binding) {
-                        this?.carouselPager?.apply {
-                            adapter = carouselHomeAdapter
+                with(binding) {
+                    this.carouselPager.apply {
+                        adapter = carouselHomeAdapter
 
-                            val zoomOutPageTransformer = ZoomOutPageTransformer()
-                            setPageTransformer { page, position ->
-                                zoomOutPageTransformer.transformPage(page, position)
-                            }
-
-                            dotsIndicator.attachTo(this)
+                        val zoomOutPageTransformer = ZoomOutPageTransformer()
+                        setPageTransformer { page, position ->
+                            zoomOutPageTransformer.transformPage(page, position)
                         }
+
+                        dotsIndicator.attachTo(this)
                     }
                 }
-                .addOnFailureListener { exception ->
-                    Log.e("Firestore", "Error getting documents: ", exception)
-                    exception.message?.let { Log.e("Firestore", it) }
-                }
-        } else {
-            startActivity(Intent(requireActivity(), LoginActivity::class.java))
-            requireActivity().finish()
-        }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("Firestore", "Error getting documents: ", exception)
+                exception.message?.let { Log.e("Firestore", it) }
+            }
     }
 
     private fun carouselItemClicked(franchise: FranchiseData) {
