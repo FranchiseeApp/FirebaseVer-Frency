@@ -4,7 +4,6 @@
     <string name="title_wishlist">Wishlist</string>
     <string name="title_account">Account</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="registration_successful">Registration successful</string>
     <string name="email_is_already_taken">Email is Already Taken</string>
     <string name="fill_the_username">Fill the username</string>
@@ -41,7 +40,7 @@
     <string name="dark_mode_off">Light mode</string>
 
     <!-- Language Preferences-->
-    <string name="language_idn">Inndonesia</string>
+    <string name="language_idn">Indonesia</string>
     <string name="language_en">English</string>
     <string name="language_def">Default</string>
 
@@ -49,6 +48,49 @@
     <string name="pref_key_notify">key_notification</string>
     <string name="pref_notify_name">Notification</string>
     <string name="pref_notify_summary">Reminder when countdown has finished.</string>
-    <string name="notify_channel_name">Habit Reminder</string>
-    <string name="notify_content">Time Up!</string>
+    <string name="edit_account_title">EditProfileActivity</string>
+
+
+    <string name="_1">+1</string>
+    <string name="type_franchise">Type Franchise</string>
+    <string name="description">Description</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="edit_your_profile">Edit your profile</string>
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="no_telephone">No Telephone</string>
+    <string name="gender">Gender</string>
+    <string name="register_btn">Register</string>
+    <string name="detail_photo">Detail Photo</string>
+    <string name="login_title">LOGIN</string>
+    <string name="hi_welcome">Hi! Welcome</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="login_btn">Login</string>
+    <string name="or">Or</string>
+    <string name="not_have_account">Not have account?</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="register_title">REGISTER</string>
+    <string name="let_s_join_us">Let\'s join us!</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="have_any_account">Have any account?</string>
+    <string name="login_here">Login here</string>
+    <string name="register_with_google">Register with Google</string>
+    <string name="type_">Type :</string>
+    <string name="facility_">Facility :</string>
+    <string name="price_">Price :</string>
+    <string name="get_link">Get Link</string>
+    <string name="share">Share</string>
+    <string name="franchise_type">Franchise Type</string>
+    <string name="recomendation">Recomendation</string>
+    <string name="choose_your_franchise">Choose Your Franchise</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="change_language_title">Change Language</string>
+    <string name="change_language_summary">Select your preferred language</string>
+    <string name="change_language_dialogtitle">Select Language</string>
+    <string name="logout_title">Logout</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="edit">Edit</string>
 </resources>

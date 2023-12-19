@@ -28,7 +28,9 @@
             android:exported="false" />
         <activity
             android:name=".ui.detail.DetailActivity"
-            android:exported="false"/>
+            android:parentActivityName=".MainActivity"
+            android:exported="false">
+        </activity>
         <activity
             android:name=".ui.camera.CameraActivity"
             android:exported="false" />
