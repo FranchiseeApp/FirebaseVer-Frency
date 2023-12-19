@@ -54,21 +54,6 @@ class HomeFragment : Fragment() {
         // Memuat data pertama kali ketika fragment dimuat
         loadData()
 
-        carouselHomeAdapter.submitList(DummyData.dataDummy)
-
-        with(binding) {
-            this?.carouselPager?.apply {
-                adapter = carouselHomeAdapter
-
-                val zoomOutPageTransformer = ZoomOutPageTransformer()
-                setPageTransformer { page, position ->
-                    zoomOutPageTransformer.transformPage(page, position)
-                }
-
-                dotsIndicator.attachTo(this)
-            }
-        }
-
     }
 
     private fun loadData() {
@@ -94,6 +79,21 @@ class HomeFragment : Fragment() {
                     recycler.layoutManager = layoutManager
                     val adapterList = FranchiseListAdapter(franchiseList)
                     recycler.adapter = adapterList
+
+                    carouselHomeAdapter.submitList(franchiseList)
+
+                    with(binding) {
+                        this?.carouselPager?.apply {
+                            adapter = carouselHomeAdapter
+
+                            val zoomOutPageTransformer = ZoomOutPageTransformer()
+                            setPageTransformer { page, position ->
+                                zoomOutPageTransformer.transformPage(page, position)
+                            }
+
+                            dotsIndicator.attachTo(this)
+                        }
+                    }
 
 //                    binding.swipeRefreshLayout?.isRefreshing = false
                 }

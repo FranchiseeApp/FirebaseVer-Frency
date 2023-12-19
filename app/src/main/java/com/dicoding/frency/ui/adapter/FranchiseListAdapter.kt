@@ -1,11 +1,12 @@
 package com.dicoding.frency.ui.adapter
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dicoding.frency.ui.detail.DetailActivity
 import com.dicoding.frency.data.entity.FranchiseData
 import com.dicoding.frency.databinding.FranchiseCardBinding
 
@@ -78,6 +79,14 @@ class FranchiseListAdapter(private val franchiseList: List<FranchiseData>) :
         val franchiseData = franchiseList[position]
 //        val firstImageUri = franchiseData.images.firstOrNull()
         holder.bind(franchiseData)
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            // Mengirim ID dokumen yang dipilih ke halaman detail menggunakan Intent
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("franchiseId", franchiseData.documentId)
+            Log.d("SendId", "franchiseId: ${franchiseData.documentId}")// Ganti "id" dengan field ID dari FranchiseData
+            context.startActivity(intent)
+        }
 
 //        if (!firstImageUri.isNullOrEmpty()) {
 //            Glide.with(holder.itemView)
