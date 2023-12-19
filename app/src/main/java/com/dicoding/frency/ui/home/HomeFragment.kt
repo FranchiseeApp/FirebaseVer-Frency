@@ -17,6 +17,7 @@ import com.dicoding.frency.data.entity.FranchiseType
 import com.dicoding.frency.data.entity.User
 import com.dicoding.frency.data.session.SessionManager
 import com.dicoding.frency.databinding.FragmentHomeBinding
+import com.dicoding.frency.ui.detail.DetailActivity
 import com.dicoding.frency.ui.franchiseslist.FranchisesListActivity
 import com.dicoding.frency.ui.login.LoginActivity
 import com.dicoding.frency.utils.ZoomOutPageTransformer
@@ -145,6 +146,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun carouselItemClicked(franchise: FranchiseData) {
-        getString(R.string.on_click_handler).showMessage(requireContext())
+        val intent = Intent(requireContext(), DetailActivity::class.java)
+        intent.putExtra("franchiseId", franchise.documentId)
+        startActivity(intent)
     }
 }
