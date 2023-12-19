@@ -1,16 +1,15 @@
 package com.dicoding.frency.ui.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.frency.R
 import com.dicoding.frency.data.entity.FranchiseType
 import com.dicoding.frency.databinding.ItemTypeDetailBinding
 
-class FranchiseTypeAdapter(private val items: List<FranchiseType>) :
-    RecyclerView.Adapter<FranchiseTypeAdapter.FranchiseViewHolder>() {
+class FranchiseTypeAdapter(
+    private val items: List<FranchiseType>,
+    private val onItemClick: (FranchiseType) -> Unit
+) : RecyclerView.Adapter<FranchiseTypeAdapter.FranchiseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FranchiseViewHolder {
         val binding = ItemTypeDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,6 +29,9 @@ class FranchiseTypeAdapter(private val items: List<FranchiseType>) :
 
         fun bind(franchiseTypeItem: FranchiseType) {
             binding.tvNameFranchises.text = franchiseTypeItem.name
+            itemView.setOnClickListener {
+                onItemClick(franchiseTypeItem)
+            }
         }
     }
 }

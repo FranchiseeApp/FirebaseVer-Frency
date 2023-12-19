@@ -48,12 +48,18 @@ class HomeFragment : Fragment() {
 
         val franchiseNames = listOf(
             FranchiseType("Stand"),
+            FranchiseType("Store"),
             FranchiseType("Kios"),
             FranchiseType("Outlet"),
             FranchiseType("Resto"),
             FranchiseType("Mini market")
         )
-        typeAdapter = FranchiseTypeAdapter(franchiseNames)
+        typeAdapter = FranchiseTypeAdapter(franchiseNames) { clickedItem ->
+            val intent = Intent(requireContext(), FranchisesListActivity::class.java)
+            intent.putExtra("typeFranchises", clickedItem.name)
+            Log.d("GetData", "onCreate: ${clickedItem.name}")
+            startActivity(intent)
+        }
 
         // Set adapter ke RecyclerView
         binding.rvType.adapter = typeAdapter

@@ -30,12 +30,19 @@ class FranchisesListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         allFranchises = intent.getBooleanExtra("allFranchises", false)
+        typeFranchises = intent.getStringExtra("typeFranchises")
 
         if (allFranchises == true) {
             loadData()
         }
 
-//        typeFranchises?.let { loadDataType(it) }
+        if (!typeFranchises.isNullOrEmpty()) { // Memeriksa apakah variabel tidak kosong atau null
+            loadDataType(typeFranchises!!)
+        }
+
+        Log.d("GetData", "onCreate: $typeFranchises")
+
+
 
 
     }
@@ -71,39 +78,39 @@ class FranchisesListActivity : AppCompatActivity() {
 
     }
 
-//    private fun loadDataType(type: String) {
-//        val db = FirebaseFirestore.getInstance()
-//        val franchisesCollection = db.collection("franchises")
-//
-//        franchisesCollection
-//            .get()
-//            .addOnSuccessListener { documents ->
-//                val franchiseList = mutableListOf<FranchiseData>()
-//
-//                for (document in documents) {
-//                    val franchiseData = document.toObject(FranchiseData::class.java)
-//                    franchiseList.add(franchiseData)
-//                }
-//
-//                // Filter franchiseList untuk mendapatkan data dengan franchiseTypes berisi "Stand"
-//                val standFranchiseList = franchiseList.filter { franchiseData ->
-//                    franchiseData.franchiseTypes.any { franchiseType ->
-//                        franchiseType.type == type
-//                    }
-//                }
-//
-//                binding.tvResultCount.text = "Showing ${standFranchiseList.size} result "
-//
-//                val layoutManager = GridLayoutManager(binding.root.context, 2)
-//                var recycler = binding.rvFranchises
-//                recycler.layoutManager = layoutManager
-//                val adapterList = FranchisesListAdapter(standFranchiseList)
-//                recycler.adapter = adapterList
-//
-//            }
-//            .addOnFailureListener { exception ->
-//                Log.e("Firestore", "Error getting documents: ", exception)
-//                exception.message?.let { Log.e("Firestore", it) }
-//            }
-//    }
+    private fun loadDataType(type: String) {
+        val db = FirebaseFirestore.getInstance()
+        val franchisesCollection = db.collection("franchises")
+
+        franchisesCollection
+            .get()
+            .addOnSuccessListener { documents ->
+                val franchiseList = mutableListOf<FranchiseData>()
+
+                for (document in documents) {
+                    val franchiseData = document.toObject(FranchiseData::class.java)
+                    franchiseList.add(franchiseData)
+                }
+
+                // Filter franchiseList untuk mendapatkan data dengan franchiseTypes berisi "Stand"
+                val standFranchiseList = franchiseList.filter { franchiseData ->
+                    franchiseData.franchiseTypes.any { franchiseType ->
+                        franchiseType.type == type
+                    }
+                }
+
+                binding.tvResultCount.text = "Showing ${standFranchiseList.size} result "
+
+                val layoutManager = GridLayoutManager(binding.root.context, 2)
+                var recycler = binding.rvFranchises
+                recycler.layoutManager = layoutManager
+                val adapterList = FranchisesListAdapter(standFranchiseList)
+                recycler.adapter = adapterList
+
+            }
+            .addOnFailureListener { exception ->
+                Log.e("Firestore", "Error getting documents: ", exception)
+                exception.message?.let { Log.e("Firestore", it) }
+            }
+    }
 }
