@@ -52,6 +52,19 @@ class AccountFragment : Fragment() {
         sessionManager = SessionManager(requireContext())
         val user: User? = sessionManager.getSession()
 
+        if (user == null) {
+            binding.tvHaveAcc.visibility = View.VISIBLE
+            binding.tvLoginHere.visibility = View.VISIBLE
+            binding.tvLoginHere.setOnClickListener {
+                startActivity(Intent(requireContext(), LoginActivity::class.java))
+            }
+        } else {
+            binding.ivProfile.visibility = View.VISIBLE
+            binding.ivBanner.visibility = View.VISIBLE
+            binding.tvNameProfile.visibility = View.VISIBLE
+            binding.settings.visibility = View.VISIBLE
+        }
+
         val preferenceFragment = MyPreferenceFragment()
         childFragmentManager.beginTransaction()
             .replace(R.id.settings, preferenceFragment)
@@ -62,7 +75,7 @@ class AccountFragment : Fragment() {
             .setPersistenceEnabled(true)
             .build()
 
-        Log.d(TAG, "onViewCreated: $user")
+
 
         binding.tvNameProfile.text = user?.name
 //        if (user?.photoProfileUrl.isNullOrEmpty()) {
