@@ -74,11 +74,10 @@
             android:id="@+id/tv_title_type"
             style="@style/Text.SemiBold.H3"
             android:layout_width="wrap_content"
-            android:layout_marginStart="21dp"
             android:layout_marginTop="16dp"
             android:text="Franchise Type"
             android:textColor="@android:color/black"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/search_view"
             app:layout_constraintTop_toBottomOf="@+id/dots_indicator" />
 
 
@@ -107,16 +106,31 @@
             app:layout_constraintTop_toBottomOf="@+id/rv_type" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_recomendation"
+            android:id="@+id/rv_recommendation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingStart="14dp"
+            app:layout_constraintEnd_toStartOf="@id/btn_see_more"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title_recomendation"
             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/recomendation_card"
-            tools:orientation="horizontal" />
+            tools:orientation="horizontal"
+            tools:ignore="RtlSymmetry" />
+
+        <Button
+            android:id="@+id/btn_see_more"
+            style="?attr/materialIconButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/baseline_arrow_forward_ios_24"
+            app:iconSize="60dp"
+            android:layout_marginLeft="14dp"
+            app:layout_constraintStart_toEndOf="@+id/rv_recommendation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rv_recommendation"
+            app:layout_constraintBottom_toBottomOf="@id/rv_recommendation"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_title_franchise"
@@ -127,7 +141,7 @@
             android:text="Choose Your Franchise"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="@+id/tv_title_recomendation"
-            app:layout_constraintTop_toBottomOf="@+id/rv_recomendation" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_recommendation" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_franchise"

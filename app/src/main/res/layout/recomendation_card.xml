@@ -5,24 +5,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="16dp"
-    android:layout_margin="10dp">
+    android:layout_margin="7dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Media -->
-
+            android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/iv_recommend"
                 android:layout_width="165dp"
                 android:layout_height="250dp"
                 android:contentDescription="desc"
                 android:scaleType="centerCrop"
                 app:cardCornerRadius="16dp"
-                android:layout_margin="10dp"
-                tools:src="@tools:sample/avatars"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <Button
+                android:id="@+id/btn_see_more"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/baseline_arrow_forward_ios_24"
+                app:iconSize="60dp"
+                android:layout_marginLeft="14dp"
+                app:layout_constraintStart_toEndOf="@+id/iv_recommend"
+                app:layout_constraintTop_toTopOf="@id/iv_recommend"
+                app:layout_constraintBottom_toBottomOf="@id/iv_recommend"
+                android:visibility="gone"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

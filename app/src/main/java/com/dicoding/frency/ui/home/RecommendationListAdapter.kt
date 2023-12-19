@@ -6,38 +6,26 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dicoding.frency.ui.detail.DetailActivity
 import com.dicoding.frency.data.entity.FranchiseData
-import com.dicoding.frency.databinding.FranchiseCardBinding
-import com.dicoding.frency.utils.formatNumber
+import com.dicoding.frency.databinding.RecomendationCardBinding
+import com.dicoding.frency.ui.detail.DetailActivity
 
-class FranchiseListAdapter(private val franchiseList: List<FranchiseData>) :
-    RecyclerView.Adapter<FranchiseListAdapter.FranchiseViewHolder>() {
+class RecommendationListAdapter(private val franchiseList: List<FranchiseData>) :
+    RecyclerView.Adapter<RecommendationListAdapter.FranchiseViewHolder>() {
 
-    inner class FranchiseViewHolder(private val binding: FranchiseCardBinding) :
+    inner class FranchiseViewHolder(private val binding: RecomendationCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(franchiseData: FranchiseData) {
             // Bind data ke elemen UI dalam item franschise_card menggunakan ViewBinding
-            binding.tvNameFranchises.text = franchiseData.name
-            binding.tvCategoryFranchise.text = franchiseData.category
-            val franchiseItem = franchiseData.franchiseTypes.map { it.price }
 
-            val minPrice = franchiseItem.min()
-            val maxPrice = franchiseItem.max()
 
-            if (maxPrice != null) {
-                binding.tvPriceFranchises.text = "Rp" + formatNumber(minPrice) + " - " + "Rp" + formatNumber(maxPrice)
-            } else {
-                binding.tvPriceFranchises.text = "Rp" + formatNumber(minPrice)
-            }
-
-            Glide.with(binding.root.context).load(franchiseData.images.firstOrNull()).into(binding.ivFranchise)
+            Glide.with(binding.root.context).load(franchiseData.images.firstOrNull()).into(binding.ivRecommend)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FranchiseViewHolder {
-        val binding = FranchiseCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = RecomendationCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FranchiseViewHolder(binding)
     }
 

@@ -88,6 +88,12 @@ class HomeFragment : Fragment() {
                         franchiseList.add(franchiseData)
                     }
 
+                    val layoutManagerRecommendList = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                    var recyclerRecommend = binding.rvRecommendation
+                    recyclerRecommend.layoutManager = layoutManagerRecommendList
+                    val adapterListRecommend = RecommendationListAdapter(franchiseList)
+                    recyclerRecommend.adapter = adapterListRecommend
+
 
                     val layoutManager = GridLayoutManager(binding.root.context, 2)
                     var recycler = binding.rvFranchise
