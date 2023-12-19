@@ -20,18 +20,6 @@ data class FranchiseItem(
     constructor() : this("", "", "")
 }
 
-//data class FranchiseData(
-//    val userId: String?,
-//    val name: String = "",
-//    val address: String = "",
-//    val description: String = "",
-//    val category: String = "",
-//    val phoneNumber: String = "",
-//    val franchiseTypes: List<FranchiseItem>,
-//    val images: List<String> // atau model lain untuk gambar
-//)
-
-
 data class FranchiseData(
     val userId: String? = null,
     val name: String = "",
@@ -52,3 +40,5 @@ data class FranchiseData(
     // Konstruktor tanpa argumen
     constructor() : this("", "", "", "", "", "", emptyList(), emptyList(), "")
 }
+
+data class FranchiseType(val name: String)

@@ -8,9 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.frency.R
 import com.dicoding.frency.data.entity.DummyData
 import com.dicoding.frency.data.entity.FranchiseData
+import com.dicoding.frency.data.entity.FranchiseItem
+import com.dicoding.frency.data.entity.FranchiseType
 import com.dicoding.frency.data.entity.User
 import com.dicoding.frency.data.session.SessionManager
 import com.dicoding.frency.databinding.FragmentHomeBinding
@@ -25,11 +28,12 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var sessionManager: SessionManager
+    private lateinit var typeAdapter: FranchiseTypeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater , container , false)
         return binding.root
@@ -41,15 +45,22 @@ class HomeFragment : Fragment() {
 
         sessionManager = SessionManager(requireContext())
 
-//        val swipeRefreshLayout = binding.swipeRefreshLayout
-//
-//        // Tambahkan listener untuk refresh
-//        swipeRefreshLayout.setOnRefreshListener {
-//            // Panggil fungsi untuk memuat ulang data
-//            loadData()
-//        }
+        val franchiseNames = listOf(
+            FranchiseType("Stand"),
+            FranchiseType("Kios"),
+            FranchiseType("Outlet"),
+            FranchiseType("Resto"),
+            FranchiseType("Mini market")
+        )
+        typeAdapter = FranchiseTypeAdapter(franchiseNames)
 
-        // Memuat data pertama kali ketika fragment dimuat
+        // Set adapter ke RecyclerView
+        binding.rvType.adapter = typeAdapter
+
+        // Set layout manager ke RecyclerView
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvType.layoutManager = layoutManager
+
         loadData()
 
     }

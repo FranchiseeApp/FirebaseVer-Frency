@@ -9,52 +9,7 @@ import com.bumptech.glide.Glide
 import com.dicoding.frency.ui.detail.DetailActivity
 import com.dicoding.frency.data.entity.FranchiseData
 import com.dicoding.frency.databinding.FranchiseCardBinding
-
-//class FranchiseListAdapter : ListAdapter<FranchiseData, FranchiseListAdapter.MyViewHolder>(DIFF_CALLBACK) {
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-//        val binding = FranchiseCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-//        return MyViewHolder(binding)
-//    }
-//
-//    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        val franchiseItem = getItem(position) as FranchiseData
-//        holder.bind(franchiseItem)
-//    }
-//
-//    class MyViewHolder(private val binding: FranchiseCardBinding) : RecyclerView.ViewHolder(binding.root) {
-//        fun bind(item: FranchiseData) {
-//            binding.tvTitle.text = item.name
-//            binding.tvRange.text = item.category
-//            Glide.with(binding.root)
-//                .load(item.images[0])
-////                .diskCacheStrategy(DiskCacheStrategy.NONE )
-////                .skipMemoryCache(true)
-//                .into(binding.ivFranchise)
-//
-//
-////            binding.root.setOnClickListener {
-////                val context = binding.root.context
-////                val intent = Intent(context, DetailUserActivity::class.java)
-////                intent.putExtra(PARCEL_NAME, item)
-////                context.startActivity(intent)
-////            }
-//        }
-//    }
-//
-//    companion object {
-//        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<FranchiseData>() {
-//            override fun areItemsTheSame(oldItem: FranchiseData, newItem: FranchiseData): Boolean {
-//                return oldItem.name == newItem.name
-//            }
-//
-//            override fun areContentsTheSame(oldItem: FranchiseData, newItem: FranchiseData): Boolean {
-//                return oldItem == newItem
-//            }
-//        }
-//        const val PARCEL_NAME = "data"
-//    }
-//}
+import com.dicoding.frency.utils.formatNumber
 
 class FranchiseListAdapter(private val franchiseList: List<FranchiseData>) :
     RecyclerView.Adapter<FranchiseListAdapter.FranchiseViewHolder>() {
@@ -64,8 +19,25 @@ class FranchiseListAdapter(private val franchiseList: List<FranchiseData>) :
 
         fun bind(franchiseData: FranchiseData) {
             // Bind data ke elemen UI dalam item franschise_card menggunakan ViewBinding
-            binding.tvTitle.text = franchiseData.name
-            binding.tvCategory.text = franchiseData.category
+            binding.tvNameFranchises.text = franchiseData.name
+            binding.tvCategoryFranchise.text = franchiseData.category
+            val franchiseItem = franchiseData.franchiseTypes.map { it.price }
+
+            if (franchiseItem != null) {
+                val minPrice = franchiseItem.min()
+                val maxPrice = franchiseItem.max()
+
+                if (minPrice != null && maxPrice != null) {
+                    binding.tvPriceFranchises.text = "Rp" + formatNumber(minPrice) + " - " + "Rp" + formatNumber(maxPrice)
+                } else if (minPrice != null) {
+                    binding.tvPriceFranchises.text = "Rp" + formatNumber(minPrice)
+                } else {
+                    binding.tvPriceFranchises.text = "Price not available"
+                }
+            } else {
+                binding.tvPriceFranchises.text = "Price not available"
+            }
+
             Glide.with(binding.root.context).load(franchiseData.images.firstOrNull()).into(binding.ivFranchise)
         }
     }

@@ -15,46 +15,41 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="21dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/bg_transparent"
             android:iconifiedByDefault="false"
             android:inputType="text"
             android:queryHint="Search"
             app:layout_constraintEnd_toStartOf="@+id/iv_notification"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <Button
             android:id="@+id/iv_notification"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="28dp"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="7dp"
             android:layout_marginEnd="24dp"
+            app:iconSize="30dp"
             android:background="@color/white"
-            android:src="@drawable/baseline_notifications_24"
+            app:icon="@drawable/baseline_notifications_24"
+            app:layout_constraintBottom_toBottomOf="@+id/search_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/search_view"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toTopOf="@+id/search_view" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/carousel_pager"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="220dp"
             android:layout_marginVertical="12dp"
-            android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:overScrollMode="never"
-            app:layout_constraintBottom_toTopOf="@id/dots_indicator"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_view"
             tools:listitem="@layout/item_carousel_home" />
@@ -75,17 +70,16 @@
             app:progressMode="false"
             app:selectedDotColor="@color/black" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <TextView
             android:id="@+id/tv_title_type"
             style="@style/Text.SemiBold.H3"
             android:layout_width="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="21dp"
             android:layout_marginTop="16dp"
             android:text="Franchise Type"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dots_indicator"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@+id/dots_indicator" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -98,62 +92,53 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title_type"
-            tools:ignore="MissingConstraints"
             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/type_item"
+            tools:listitem="@layout/item_type_detail"
             tools:orientation="horizontal" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <TextView
             android:id="@+id/tv_title_recomendation"
             style="@style/Text.SemiBold.H3"
             android:layout_width="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="Recomendation"
-            android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_type"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_type" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_recomendation"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:paddingStart="10dp"
-            android:paddingEnd="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title_recomendation"
-            tools:ignore="MissingConstraints"
             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/recomendation_card"
             tools:orientation="horizontal" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <TextView
             android:id="@+id/tv_title_franchise"
             style="@style/Text.SemiBold.H3"
             android:layout_width="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Choose Your Franchise"
             android:textColor="@android:color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_recomendation"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintStart_toStartOf="@+id/tv_title_recomendation"
+            app:layout_constraintTop_toBottomOf="@+id/rv_recomendation" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_franchise"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title_franchise"
             app:spanCount="2"
-            tools:ignore="MissingConstraints"
+            android:paddingHorizontal="14dp"
             tools:itemCount="6"
             tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:listitem="@layout/franchise_card" />
