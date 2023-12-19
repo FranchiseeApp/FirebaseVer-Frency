@@ -24,13 +24,15 @@
         android:theme="@style/Theme.Frency"
         tools:targetApi="31">
         <activity
+            android:name=".ui.franchiseslist.FranchisesListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.listimage.ListImageActivity"
             android:exported="false" />
         <activity
             android:name=".ui.detail.DetailActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".ui.camera.CameraActivity"
             android:exported="false" />

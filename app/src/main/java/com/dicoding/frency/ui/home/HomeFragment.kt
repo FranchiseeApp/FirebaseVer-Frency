@@ -17,6 +17,7 @@ import com.dicoding.frency.data.entity.FranchiseType
 import com.dicoding.frency.data.entity.User
 import com.dicoding.frency.data.session.SessionManager
 import com.dicoding.frency.databinding.FragmentHomeBinding
+import com.dicoding.frency.ui.franchiseslist.FranchisesListActivity
 import com.dicoding.frency.ui.login.LoginActivity
 import com.dicoding.frency.utils.ZoomOutPageTransformer
 import com.dicoding.frency.utils.showMessage
@@ -63,6 +64,12 @@ class HomeFragment : Fragment() {
 
         loadData()
 
+
+        binding.btnSeeAllFranchises.setOnClickListener {
+            val intent = Intent(requireContext(), FranchisesListActivity::class.java)
+            intent.putExtra("allFranchises", true)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {
