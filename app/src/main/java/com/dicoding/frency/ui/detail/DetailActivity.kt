@@ -25,6 +25,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var adapter: FranchiseItemAdapter
 
     private var franchiseId: String? = null
+    private var modalBottomSheet: ModalBottomSheetOptions? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -41,7 +42,35 @@ class DetailActivity : AppCompatActivity() {
             // Tambahkan aksi saat tombol kembali diklik
             toolbar.setNavigationOnClickListener { onBackPressed() }
         }
+        loadData()
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(com.dicoding.frency.R.menu.menu_detail, menu)
+        return true
+    }
+    override fun onPause() {
+        super.onPause()
+        modalBottomSheet?.dismiss()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            com.dicoding.frency.R.id.action_more -> {
+                modalBottomSheet?.show(supportFragmentManager, ModalBottomSheet.TAG)
+                true
+            }
+            // Handle item lainnya jika ada
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun loadData() {
 //        Log.d("DetailActivity", "Received franchiseId: $franchiseId")
         binding.overlayLoading.visibility = View.VISIBLE
         val db = FirebaseFirestore.getInstance()
@@ -123,8 +152,8 @@ class DetailActivity : AppCompatActivity() {
 
                         // == BUTTON WA
                         binding.btnWa.setOnClickListener {
-                            val phoneNumber = "6287753231841"
-                            val url = "https://wa.me/$phoneNumber"
+                            val phoneNumber = franchiseData.phoneNumber
+                            val url = "https://wa.me/62$phoneNumber"
 
                             val intent = Intent(Intent.ACTION_VIEW)
                             intent.data = Uri.parse(url)
@@ -142,26 +171,6 @@ class DetailActivity : AppCompatActivity() {
                 // Handle kesalahan saat mengambil data dari Firestore
                 Log.e("LoginActivity", "Error getting user document", exception)
             }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(com.dicoding.frency.R.menu.menu_detail, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            com.dicoding.frency.R.id.action_more -> {
-                // Aksi yang ingin Anda lakukan saat tombol "More" ditekan
-                franchiseId?.let { id ->
-                    val modalBottomSheet = ModalBottomSheetOptions(id)
-                    modalBottomSheet.show(supportFragmentManager, ModalBottomSheet.TAG)
-                }
-                true
-            }
-            // Handle item lainnya jika ada
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }
 
