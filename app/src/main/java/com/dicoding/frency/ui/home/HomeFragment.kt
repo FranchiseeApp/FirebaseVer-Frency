@@ -116,7 +116,7 @@ class HomeFragment : Fragment() {
                     recycler.adapter = adapterList
 
 //                    carouselHomeAdapter.submitList(franchiseList)
-                    carouselHomeAdapter.submitList(DummyData.dataDummy)
+                    carouselHomeAdapter.submitList(franchiseList)
 
                     with(binding) {
                         this?.carouselPager?.apply {

@@ -18,9 +18,7 @@ class CarouselHomeAdapter(private val onItemClick: (FranchiseData) -> Unit) :
         fun bind(item: FranchiseData) {
             binding.apply {
                 Glide.with(binding.root)
-                    .load(item.images)
-//                .diskCacheStrategy(DiskCacheStrategy.NONE )
-//                .skipMemoryCache(true)
+                    .load(item.images[0])
                     .into(binding.ivCarousel)
                 root.setOnClickListener { onItemClick(item) }
             }
