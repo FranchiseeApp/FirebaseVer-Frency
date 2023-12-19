@@ -17,7 +17,7 @@
             android:background="@color/white"
             app:layout_scrollFlags="scroll|enterAlways"
             app:navigationIcon="@drawable/ic_back"
-            app:title="Detail Photo"
+            app:title="@string/detail_photo"
             app:titleCentered="true"
             app:titleTextAppearance="@style/Text.SemiBold.H3"
             app:titleTextColor="@android:color/black" />

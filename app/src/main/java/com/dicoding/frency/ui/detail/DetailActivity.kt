@@ -37,22 +37,26 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true) // Tampilkan tombol kembali
+            setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
-            // Tambahkan aksi saat tombol kembali diklik
-            toolbar.setNavigationOnClickListener { onBackPressed() }
         }
+
         loadData()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(com.dicoding.frency.R.menu.menu_detail, menu)
         return true
     }
-    override fun onPause() {
-        super.onPause()
-        modalBottomSheet?.dismiss()
-    }
+//    override fun onPause() {
+//        super.onPause()
+//        modalBottomSheet?.dismiss()
+//    }
 
     override fun onResume() {
         super.onResume()

@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name">Frency</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_wishlist">Wishlist</string>
+    <string name="title_account">Akun</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
+    <string name="registration_successful">Registrasi sukses</string>
+    <string name="email_is_already_taken">Email sudah digunakan</string>
+    <string name="fill_the_username">Isi username</string>
+    <string name="invalid_email_address">Alamat email tidak valid</string>
+    <string name="minimal_8_character">Minimal 8 karakter</string>
+    <string name="eror_text">Minimal 8 karakter</string>
+    <string name="confirm_password_eror_text">Kata sandi tidak cocok</string>
+    <string name="input_confirm_password">Masukkan kata sandi konfirmasi</string>
+    <string name="network_error">Kesalahan jaringan</string>
+    <string name="username_password_is_incorrect">Username/kata sandi salah</string>
+    <string name="are_you_sure_you_want_to_log_out">Apakah Anda yakin ingin keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="permission_request_granted">Permintaan izin dikabulkan</string>
+    <string name="permission_request_denied">Permintaan izin ditolak</string>
+    <string name="choose_from">Pilih dari</string>
+    <string name="take_photo">Ambil gambar</string>
+    <string name="gallery">Galeri</string>
+    <string name="cancel">Batal</string>
+    <string name="failed_to_get_camera">Gagal mendapatkan kamera</string>
+    <string name="failed_to_get_image">Gagal mendapatkan gambar</string>
+    <string name="on_click_handler">Fitur belum diimplementasikan</string>
+
+
+    <!-- Night Mode Preferences -->
+    <string name="pref_dark_title">Mode gelap</string>
+    <string name="pref_key_dark" translatable="false">key_dark_mode</string>
+    <string name="pref_dark_follow_system" translatable="false">follow_system</string>
+    <string name="pref_dark_on" translatable="false">on</string>
+    <string name="pref_dark_off" translatable="false">off</string>
+    <string name="dark_mode_auto">Otomatis</string>
+    <string name="dark_mode_on">Mode gelap</string>
+    <string name="dark_mode_off">Mode terang</string>
+
+    <!-- Language Preferences-->
+    <string name="language_idn">Indonesia</string>
+    <string name="language_en">English</string>
+    <string name="language_def">Default</string>
+
+    <!-- Notification -->
+    <string name="pref_key_notify">key_notification</string>
+    <string name="pref_notify_name">Notifikasi</string>
+    <string name="edit_account_title">Edit Profil</string>
+    <string name="pref_notify_summary">Pengingat</string>
+
+    <string name="detail_photo">Detail Photo</string>
+    <string name="login_title">MASUK</string>
+    <string name="login_btn">Masuk</string>
+    <string name="franchise_type">Tipe Franchise</string>
+    <string name="recomendation">Recomendation</string>
+    <string name="choose_your_franchise">Pilih Franchise Anda</string>
+    <string name="wishlist">Daftar Keinginan</string>
+    <string name="change_language_title">Ubah Bahasa</string>
+    <string name="change_language_summary">Pilih bahasa anda</string>
+    <string name="change_language_dialogtitle">Pilih Bahasa</string>
+    <string name="logout_title">Keluar</string>
+    <string name="type_franchise">Tipe Franchise</string>
+    <string name="description">Deskripsi</string>
+
+    <string name="_1">+1</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="edit_your_profile">Edit profil Anda</string>
+    <string name="username">Username</string>
+    <string name="name">Nama</string>
+    <string name="email">Email</string>
+    <string name="no_telephone">No Telephone</string>
+    <string name="gender">Jenis Kelamin</string>
+    <string name="hi_welcome">Hi! Selamat Datang</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Lupa password?</string>
+    <string name="not_have_account">Belum punya akun?</string>
+    <string name="or">Atau</string>
+    <string name="login_with_google">Masuk dengan Google</string>
+    <string name="register_title">DAFTAR</string>
+    <string name="let_s_join_us">Mari bergabung bersama kami!</string>
+    <string name="confirm_password">Konfirmasi Password</string>
+    <string name="register_btn">Daftar</string>
+    <string name="have_any_account">Sudah punya akun?</string>
+    <string name="login_here">Masuk disini</string>
+    <string name="register_with_google">Daftar dengan Google</string>
+    <string name="type_">Tipe :</string>
+    <string name="facility_">Fasilitas :</string>
+    <string name="price_">Harga :</string>
+    <string name="share">Bagikan</string>
+    <string name="get_link">Dapatkan Link</string>
+    <string name="male">Laki-laki</string>
+    <string name="female">Perempuan</string>
+    <string name="edit">Edit</string>
+</resources>
