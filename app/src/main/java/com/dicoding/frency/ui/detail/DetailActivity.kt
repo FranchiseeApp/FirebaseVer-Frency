@@ -32,6 +32,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         franchiseId = intent.getStringExtra("franchiseId")
+        modalBottomSheet = franchiseId?.let { ModalBottomSheetOptions(it) }
 
         val toolbar = binding.toolbarDetail
         setSupportActionBar(toolbar)
@@ -41,9 +42,10 @@ class DetailActivity : AppCompatActivity() {
             setDisplayShowHomeEnabled(true)
         }
 
+//        Log.d("DetailActivity", "Received franchiseId: $franchiseId")
+
         loadData()
     }
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
@@ -53,8 +55,8 @@ class DetailActivity : AppCompatActivity() {
         menuInflater.inflate(com.dicoding.frency.R.menu.menu_detail, menu)
         return true
     }
-//    override fun onPause() {
-//        super.onPause()
+//    override fun onResume() {
+//        super.onResume()
 //        modalBottomSheet?.dismiss()
 //    }
 
@@ -75,7 +77,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun loadData() {
-//        Log.d("DetailActivity", "Received franchiseId: $franchiseId")
         binding.overlayLoading.visibility = View.VISIBLE
         val db = FirebaseFirestore.getInstance()
         val userDocument = db.collection("franchises").document(franchiseId!!)
@@ -177,4 +178,3 @@ class DetailActivity : AppCompatActivity() {
             }
     }
 }
-

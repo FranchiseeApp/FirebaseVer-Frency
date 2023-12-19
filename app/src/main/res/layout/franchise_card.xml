@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     style="?attr/materialCardViewElevatedStyle"
     android:id="@+id/cv_story"
-    android:layout_margin="7dp">
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginBottom="14dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -41,6 +41,7 @@ class ModalBottomSheet(private val clickedItem: FranchiseItem) : BottomSheetDial
 
         // Set alpha ke 1.0 saat bottom sheet ditutup
         dialog?.setOnDismissListener {
+            dismiss()
             (requireActivity() as? AppCompatActivity)?.findViewById<View>(R.id.content)?.alpha = 1.0f
         }
     }
@@ -74,6 +75,7 @@ class ModalBottomSheetOptions(private val franchiseId: String) : BottomSheetDial
 
         // Set alpha ke 1.0 saat bottom sheet ditutup
         dialog?.setOnDismissListener {
+            dismiss()
             (requireActivity() as? AppCompatActivity)?.findViewById<View>(R.id.content)?.alpha = 1.0f
         }
     }

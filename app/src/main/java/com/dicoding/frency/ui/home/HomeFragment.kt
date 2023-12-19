@@ -98,7 +98,8 @@ class HomeFragment : Fragment() {
                     val layoutManager = GridLayoutManager(binding.root.context, 2)
                     var recycler = binding.rvFranchise
                     recycler.layoutManager = layoutManager
-                    val adapterList = FranchiseListAdapter(franchiseList)
+                    val limitedList = franchiseList.subList(0, 6)
+                    val adapterList = FranchiseListAdapter(limitedList)
                     recycler.adapter = adapterList
 
 //                    carouselHomeAdapter.submitList(franchiseList)

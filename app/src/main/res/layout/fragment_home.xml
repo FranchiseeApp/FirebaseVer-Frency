@@ -2,9 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.home.HomeFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -146,7 +146,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_franchise"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="705dp"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -156,6 +156,19 @@
             tools:itemCount="6"
             tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:listitem="@layout/franchise_card" />
+
+        <Button
+            android:id="@+id/btn_see_all_franchises"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="See All Franchises"
+            app:layout_constraintTop_toBottomOf="@id/rv_franchise"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="21dp"
+            style="@style/Widget.Material3.Button.TextButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="7dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
