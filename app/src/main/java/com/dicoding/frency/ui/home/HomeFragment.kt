@@ -7,12 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.frency.R
-import com.dicoding.frency.data.entity.DummyData
 import com.dicoding.frency.data.entity.FranchiseData
-import com.dicoding.frency.data.entity.FranchiseItem
 import com.dicoding.frency.data.entity.FranchiseType
 import com.dicoding.frency.data.entity.User
 import com.dicoding.frency.data.session.SessionManager
@@ -21,7 +19,6 @@ import com.dicoding.frency.ui.detail.DetailActivity
 import com.dicoding.frency.ui.franchiseslist.FranchisesListActivity
 import com.dicoding.frency.ui.login.LoginActivity
 import com.dicoding.frency.utils.ZoomOutPageTransformer
-import com.dicoding.frency.utils.showMessage
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeFragment : Fragment() {
@@ -36,7 +33,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater , container , false)
         return binding.root
 
@@ -58,14 +54,12 @@ class HomeFragment : Fragment() {
         typeAdapter = FranchiseTypeAdapter(franchiseNames) { clickedItem ->
             val intent = Intent(requireContext(), FranchisesListActivity::class.java)
             intent.putExtra("typeFranchises", clickedItem.name)
-            Log.d("GetData", "onCreate: ${clickedItem.name}")
+            Log.d("sendData", "onCreate: ${clickedItem.name}")
             startActivity(intent)
         }
 
-        // Set adapter ke RecyclerView
         binding.rvType.adapter = typeAdapter
 
-        // Set layout manager ke RecyclerView
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvType.layoutManager = layoutManager
 
@@ -77,11 +71,27 @@ class HomeFragment : Fragment() {
             intent.putExtra("allFranchises", true)
             startActivity(intent)
         }
+
+        val searchView = binding.searchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val intent = Intent(requireContext(), FranchisesListActivity::class.java)
+                intent.putExtra("searchFranchise", query)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Di sini, Anda dapat melakukan sesuatu ketika teks pada SearchView berubah
+                // Misalnya, perbarui tampilan berdasarkan teks yang dimasukkan pengguna
+                return false
+            }
+        })
     }
 
     override fun onResume() {
         super.onResume()
-        // Memuat data setiap kali fragment di-resume
         loadData()
     }
 
@@ -116,7 +126,6 @@ class HomeFragment : Fragment() {
                     val adapterList = FranchiseListAdapter(limitedList)
                     recycler.adapter = adapterList
 
-//                    carouselHomeAdapter.submitList(franchiseList)
                     carouselHomeAdapter.submitList(franchiseList)
 
                     with(binding) {
@@ -131,13 +140,10 @@ class HomeFragment : Fragment() {
                             dotsIndicator.attachTo(this)
                         }
                     }
-
-//                    binding.swipeRefreshLayout?.isRefreshing = false
                 }
                 .addOnFailureListener { exception ->
                     Log.e("Firestore", "Error getting documents: ", exception)
                     exception.message?.let { Log.e("Firestore", it) }
-//                    binding.swipeRefreshLayout?.isRefreshing = false
                 }
         } else {
             startActivity(Intent(requireActivity(), LoginActivity::class.java))
