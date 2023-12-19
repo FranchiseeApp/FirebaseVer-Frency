@@ -84,19 +84,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/smallImage1"
                 tools:text="Nama Franchises" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:layout_marginTop="28dp"
-                android:src="@drawable/baseline_favorite_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.927"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/smallImage3"
-                tools:ignore="MissingConstraints" />
+            <CheckBox
+                android:id="@+id/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:button="@drawable/sl_favourite_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_price_franchises"
+                app:layout_constraintEnd_toEndOf="@+id/tv_name_franchises"
+                app:layout_constraintTop_toTopOf="@+id/tv_name_franchises" />
 
             <TextView
                 android:id="@+id/tv_price_franchises"

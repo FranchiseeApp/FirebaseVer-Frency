@@ -27,7 +27,8 @@ class UserRepository {
                     "photoProfileUrl" to "",
                     "gender" to "",
                     "noTel" to "",
-                    "role" to "franchisee"
+                    "role" to "franchisee",
+                    "favorites" to emptyList<String>(),
                 )
 
                 user?.let {
