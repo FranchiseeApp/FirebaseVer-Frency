@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.frency.data.entity.FranchiseData
@@ -18,6 +19,7 @@ import com.dicoding.frency.utils.formatNumber
 import com.bumptech.glide.Glide
 import com.dicoding.frency.data.entity.User
 import com.dicoding.frency.data.session.SessionManager
+import com.dicoding.frency.ui.login.LoginActivity
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -31,7 +33,7 @@ class DetailActivity : AppCompatActivity() {
     private var modalBottomSheet: ModalBottomSheetOptions? = null
     private val db = FirebaseFirestore.getInstance()
     private lateinit var sessionManager: SessionManager
-    private lateinit var userId: String
+    private var userId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,35 +51,37 @@ class DetailActivity : AppCompatActivity() {
             setDisplayShowHomeEnabled(true)
         }
 
-//        Log.d("DetailActivity", "Received franchiseId: $franchiseId")
         sessionManager = SessionManager(this)
         val user: User? = sessionManager.getSession()
-        userId = user!!.userId
+        if (user != null) {
+            userId = user.userId
+        }
 
-        loadData(userId)
-
-
-
+        loadData()
 
         binding.icon.setOnCheckedChangeListener { checkBox, isChecked ->
-            val userDocument = db.collection("users").document(user!!.userId)
-            if (isChecked) {
-                userDocument.update("favorites", FieldValue.arrayUnion(franchiseId))
-                    .addOnSuccessListener {
-                        // Dokumen ditambahkan ke daftar favorit
-                        Log.d("dataBerhasil", "onCreate: ${user.userId}")
-                    }
-                    .addOnFailureListener { e ->
-                        // Handle kesalahan penambahan dokumen ke daftar favorit
-                    }
+            if (!userId.isNullOrEmpty()) {
+                val userDocument = db.collection("users").document(user!!.userId)
+                if (isChecked) {
+                    userDocument.update("favorites", FieldValue.arrayUnion(franchiseId))
+                } else {
+                    userDocument.update("favorites", FieldValue.arrayRemove(franchiseId))
+                }
             } else {
-                userDocument.update("favorites", FieldValue.arrayRemove(franchiseId))
-                    .addOnSuccessListener {
-                        Log.d("hapusBerhasil", "onCreate: ${user.userId}")
+                binding.icon.isChecked = false
+                val alertDialog = AlertDialog.Builder(this)
+                    .setTitle("Login Required")
+                    .setMessage("To add to favorites, please login.")
+                    .setPositiveButton("Login") { dialog, which ->
+                        val intent = Intent(this@DetailActivity, LoginActivity::class.java)
+                        startActivity(intent)
                     }
-                    .addOnFailureListener { e ->
-                        // Handle kesalahan penghapusan dokumen dari daftar favorit
+                    .setNegativeButton("Cancel") { dialog, which ->
+                        dialog.dismiss()
                     }
+                    .create()
+
+                alertDialog.show()
             }
         }
     }
@@ -95,7 +99,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        loadData(userId)
+        loadData()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -108,114 +112,118 @@ class DetailActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-    private fun loadData(userId : String) {
+    private fun loadData() {
         binding.overlayLoading.visibility = View.VISIBLE
-        val userDocument = db.collection("users").document(userId)
+        val db = FirebaseFirestore.getInstance()
+        val userDocument = db.collection("franchises").document(franchiseId!!)
         userDocument.get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
-                    val favorites = documentSnapshot.get("favorites") as? ArrayList<String>
-                    val isChecked = favorites?.contains(franchiseId) == true
-                    binding.icon.isChecked = isChecked
-
-                    val franchiseDoc = db.collection("franchises").document(franchiseId!!)
-                    franchiseDoc.get()
-                        .addOnSuccessListener { franchiseSnapshot ->
-                            if (franchiseSnapshot.exists()) {
-                                val franchiseData = franchiseSnapshot.toObject(FranchiseData::class.java)
-                                if (franchiseData != null) {
-                                    Log.d("detailData", "$franchiseData")
+                    val franchiseData = documentSnapshot.toObject(FranchiseData::class.java)
+                    if (franchiseData != null) {
+                        Log.d("detailData", "$franchiseData")
 
 
-                                    val imagesFranchise = franchiseData.images
+                        val imagesFranchise = franchiseData.images
 
-                                    Glide.with(this).load(imagesFranchise[0]).into(binding.bigImage)
-                                    Glide.with(this).load(imagesFranchise[1]).into(binding.smallImage1)
-                                    Glide.with(this).load(imagesFranchise[2]).into(binding.smallImage2)
-                                    Glide.with(this).load(imagesFranchise[3]).into(binding.smallImage3)
+                        Glide.with(this).load(imagesFranchise[0]).into(binding.bigImage)
+                        Glide.with(this).load(imagesFranchise[1]).into(binding.smallImage1)
+                        Glide.with(this).load(imagesFranchise[2]).into(binding.smallImage2)
+                        Glide.with(this).load(imagesFranchise[3]).into(binding.smallImage3)
 
-                                    binding.btnLoadMore.setOnClickListener {
-                                        val intent = Intent(this@DetailActivity, ListImageActivity::class.java)
-                                        intent.putExtra("franchiseId", franchiseData.documentId)
+                        binding.btnLoadMore.setOnClickListener {
+                            val intent = Intent(this@DetailActivity, ListImageActivity::class.java)
+                            intent.putExtra("franchiseId", franchiseData.documentId)
 
-                                        startActivity(intent)
+                            startActivity(intent)
+                        }
+
+                        if (!userId.isNullOrEmpty()) {
+                            val userDocument = db.collection("users").document(userId!!)
+                            userDocument.get()
+                                .addOnSuccessListener { documentSnapshot ->
+                                    if (documentSnapshot.exists()) {
+                                        val favorites =
+                                            documentSnapshot.get("favorites") as? ArrayList<String>
+                                        val isChecked = favorites?.contains(franchiseId) == true
+                                        binding.icon.isChecked = isChecked
                                     }
-
-
-                                    Log.d("imagesF", "onCreate: ${imagesFranchise.size}")
-
-                                    if (imagesFranchise.size <= 4) {
-                                        binding.btnLoadMore.visibility = View.GONE
-                                    } else {
-                                        binding.btnLoadMore.visibility = View.VISIBLE
-                                        val updateText = imagesFranchise.size - 4
-                                        binding.btnLoadMore.text = "+" + updateText
-                                    }
-
-                                    // == NAME FRANCHISE
-                                    binding.tvNameFranchises.text = franchiseData.name
-
-
-                                    // == TYPE FRANCHISE
-                                    val franchiseTypes = franchiseData.franchiseTypes
-                                    adapter = FranchiseItemAdapter(franchiseTypes) { clickedItem ->
-                                        val modalBottomSheet = ModalBottomSheet(clickedItem)
-                                        modalBottomSheet.show(supportFragmentManager, ModalBottomSheet.TAG)
-                                    }
-                                    binding.rvTypeFranchise.adapter = adapter
-
-                                    val imageLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-                                    binding.rvTypeFranchise.layoutManager = imageLayoutManager
-
-
-                                    // == PRICE
-                                    val prices = franchiseTypes.map { it.price }
-
-                                    if (prices.size == 1) {
-                                        binding.tvPriceFranchises.text = "Rp" + formatNumber(prices[0])
-                                    } else {
-                                        val minPrice = prices.minOrNull()
-                                        val maxPrice = prices.maxOrNull()
-
-                                        if (minPrice != null && maxPrice != null) {
-                                            binding.tvPriceFranchises.text = "Rp" + formatNumber(minPrice) + " - " + "Rp" + formatNumber(maxPrice)
-                                        } else {
-                                            // Handle jika tidak ada harga atau hanya ada satu harga
-                                            binding.tvPriceFranchises.text = "Price not available"
-                                        }
-                                    }
-
-
-                                    // == DESKRIPSI
-                                    binding.tvDescFranchises.text = franchiseData.description
-
-                                    // == BUTTON WA
-                                    binding.btnWa.setOnClickListener {
-                                        val phoneNumber = franchiseData.phoneNumber
-                                        val url = "https://wa.me/62$phoneNumber"
-
-                                        val intent = Intent(Intent.ACTION_VIEW)
-                                        intent.data = Uri.parse(url)
-                                        startActivity(intent)
-                                    }
-                                    binding.overlayLoading.visibility = View.GONE
                                 }
+                        }
+
+
+                        Log.d("imagesF", "onCreate: ${imagesFranchise.size}")
+
+                        if (imagesFranchise.size <= 4) {
+                            binding.btnLoadMore.visibility = View.GONE
+                        } else {
+                            binding.btnLoadMore.visibility = View.VISIBLE
+                            val updateText = imagesFranchise.size - 4
+                            binding.btnLoadMore.text = "+" + updateText
+                        }
+
+                        // == NAME FRANCHISE
+                        binding.tvNameFranchises.text = franchiseData.name
+
+
+                        // == TYPE FRANCHISE
+                        val franchiseTypes = franchiseData.franchiseTypes
+//                        Log.d("rvApp", "onCreate: $franchiseTypes")
+                        adapter = FranchiseItemAdapter(franchiseTypes) { clickedItem ->
+
+                            // Ketika item diklik, tampilkan modal bottom sheet dan tampilkan informasi yang diperlukan
+                            val modalBottomSheet = ModalBottomSheet(clickedItem)
+                            modalBottomSheet.show(supportFragmentManager, ModalBottomSheet.TAG)
+
+                        }
+                        binding.rvTypeFranchise.adapter = adapter
+
+                        val imageLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+                        binding.rvTypeFranchise.layoutManager = imageLayoutManager
+
+
+                        // == PRICE
+                        val prices = franchiseTypes.map { it.price }
+
+                        if (prices.size == 1) {
+                            binding.tvPriceFranchises.text = "Rp" + formatNumber(prices[0])
+                        } else {
+                            val minPrice = prices.minOrNull()
+                            val maxPrice = prices.maxOrNull()
+
+                            if (minPrice != null && maxPrice != null) {
+//                                binding.tvPriceFranchises.text = "$minPrice - $maxPrice"
+                                binding.tvPriceFranchises.text = "Rp" + formatNumber(minPrice) + " - " + "Rp" + formatNumber(maxPrice)
                             } else {
-                                binding.overlayLoading.visibility = View.GONE
+                                // Handle jika tidak ada harga atau hanya ada satu harga
+                                binding.tvPriceFranchises.text = "Price not available"
                             }
                         }
-                        .addOnFailureListener { franchiseException ->
-                            binding.overlayLoading.visibility = View.GONE
-                            Log.e("DetailActivity", "Error getting franchise document", franchiseException)
+
+
+                        // == DESKRIPSI
+                        binding.tvDescFranchises.text = franchiseData.description
+
+                        // == BUTTON WA
+                        binding.btnWa.setOnClickListener {
+                            val phoneNumber = franchiseData.phoneNumber
+                            val url = "https://wa.me/62$phoneNumber"
+
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            intent.data = Uri.parse(url)
+                            startActivity(intent)
                         }
+                        binding.overlayLoading.visibility = View.GONE
+                    }
                 } else {
                     binding.overlayLoading.visibility = View.GONE
+                    // Dokumen tidak ditemukan di Firestore
                 }
             }
-            .addOnFailureListener { userException ->
+            .addOnFailureListener { exception ->
                 binding.overlayLoading.visibility = View.GONE
-                Log.e("DetailActivity", "Error getting user document", userException)
+                // Handle kesalahan saat mengambil data dari Firestore
+                Log.e("LoginActivity", "Error getting user document", exception)
             }
     }
 }
