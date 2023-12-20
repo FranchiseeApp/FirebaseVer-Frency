@@ -163,6 +163,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="24dp"
                 android:text="@string/whatsapp"
+                style="@style/ButtonBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_desc_franchises"
                 app:layout_constraintStart_toStartOf="@+id/tv_desc_franchises"
@@ -179,13 +180,11 @@
             android:id="@+id/toolbar_detail"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
+            style="@style/Toolbar"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:navigationIcon="@drawable/ic_back"
             app:title="Detail"
             app:titleCentered="true"
-            app:titleTextAppearance="@style/Text.SemiBold.H3"
-            app:titleTextColor="@android:color/black" />
+            app:titleTextAppearance="@style/Text.SemiBold.H3"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

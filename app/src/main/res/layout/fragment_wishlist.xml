@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.wishlist.WishlistFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/appbar_wishlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,16 +20,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0.8"
-            android:background="@color/white"
             app:title="@string/wishlist"
+            app:navigationIcon="@color/transparent"
+            style="@style/Toolbar"
             app:titleCentered="true"
-            app:titleTextAppearance="@style/Text.SemiBold.H3"
-            app:titleTextColor="@android:color/black" />
+            app:titleTextAppearance="@style/Text.SemiBold.H3" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_wishlist"
+        android:paddingTop="16dp"
         android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="0dp"

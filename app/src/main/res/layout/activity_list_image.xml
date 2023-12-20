@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.franchiseslist.FranchisesListActivity"
-    android:layout_marginTop="?attr/actionBarSize">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_height="match_parent">
 
-        <!-- Your existing content below -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_list_image"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none" />
+            android:layout_height="wrap_content"
+            android:paddingTop="?attr/actionBarSize">
+
+            <!-- Your existing content below -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -28,15 +31,13 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_detail_photo"
+            style="@style/Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:navigationIcon="@drawable/ic_back"
             app:title="@string/detail_photo"
             app:titleCentered="true"
-            app:titleTextAppearance="@style/Text.SemiBold.H3"
-            app:titleTextColor="@android:color/black" />
+            app:titleTextAppearance="@style/Text.SemiBold.H3" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -46,14 +47,14 @@
         android:layout_height="match_parent"
         android:alpha="0.5"
         android:background="#88000000"
-        android:visibility="gone"
-        android:paddingTop="?attr/actionBarSize">
+        android:paddingTop="?attr/actionBarSize"
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/progress_bar"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
 
     </FrameLayout>
 
