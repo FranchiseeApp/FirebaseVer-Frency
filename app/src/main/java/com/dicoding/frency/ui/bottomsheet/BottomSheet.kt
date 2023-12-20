@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.frency.data.entity.FranchiseItem
 import com.dicoding.frency.databinding.BottomSheetBinding
 import com.dicoding.frency.databinding.BottomSheetOptionsBinding
+import com.dicoding.frency.utils.formatNumber
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -33,7 +34,7 @@ class ModalBottomSheet(private val clickedItem: FranchiseItem) : BottomSheetDial
 
         binding.tvTypeInp.text = clickedItem.type
         binding.tvFacilityInp.text = clickedItem.facility
-        binding.tvPriceInp.text = clickedItem.price
+        binding.tvPriceInp.text = "Rp "+ formatNumber(clickedItem.price)
 
         dialog?.setOnShowListener {
             (requireActivity() as? AppCompatActivity)?.findViewById<View>(R.id.content)?.alpha = 0.6f
