@@ -13,8 +13,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".ui.detail.DetailActivity"
-            android:layout_marginTop="?attr/actionBarSize">
+            android:paddingTop="?attr/actionBarSize"
+            tools:context=".ui.detail.DetailActivity">
 
             <ImageView
                 android:id="@+id/bigImage"
@@ -22,6 +22,7 @@
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
@@ -159,8 +160,10 @@
                 android:id="@+id/btn_wa"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="21dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
                 android:text="@string/whatsapp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_desc_franchises"
                 app:layout_constraintStart_toStartOf="@+id/tv_desc_franchises"
                 app:layout_constraintTop_toBottomOf="@+id/tv_desc_franchises" />
