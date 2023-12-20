@@ -47,7 +47,7 @@
     <!-- Notification -->
     <string name="pref_key_notify">key_notification</string>
     <string name="pref_notify_name">Notifikasi</string>
-    <string name="edit_account_title">Edit Profil</string>
+    <string name="edit_account_title">Ubah Profil</string>
     <string name="pref_notify_summary">Pengingat</string>
 
     <string name="detail_photo">Detail Photo</string>
@@ -93,4 +93,10 @@
     <string name="male">Laki-laki</string>
     <string name="female">Perempuan</string>
     <string name="edit">Edit</string>
+    <string name="home_subtitle1">Tipe Franchise</string>
+    <string name="home_subtitle2">Rekomendasi</string>
+    <string name="home_subtitle3">Pilih Franchise Anda</string>
+    <string name="see_all_franchises">Lihat Semua Franchise</string>
+    <string name="search">Cari</string>
+    <string name="showing_result">"Menampilkan %1$s hasil "</string>
 </resources>

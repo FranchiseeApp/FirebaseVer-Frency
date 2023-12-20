@@ -3,7 +3,6 @@ package com.dicoding.frency.ui.listimage
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.frency.data.entity.FranchiseData
 import com.dicoding.frency.databinding.ItemImageBinding
 import com.bumptech.glide.Glide
 

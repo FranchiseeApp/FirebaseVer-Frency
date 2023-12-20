@@ -1,20 +1,16 @@
 package com.dicoding.frency.ui.bottomsheet
 
 import android.R
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.frency.data.entity.FranchiseItem
 import com.dicoding.frency.databinding.BottomSheetBinding
 import com.dicoding.frency.databinding.BottomSheetOptionsBinding
 import com.dicoding.frency.utils.formatNumber
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.firebase.firestore.FirebaseFirestore
 
 class ModalBottomSheet(private val clickedItem: FranchiseItem) : BottomSheetDialogFragment() {
 
@@ -24,7 +20,7 @@ class ModalBottomSheet(private val clickedItem: FranchiseItem) : BottomSheetDial
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = BottomSheetBinding.inflate(inflater, container, false)
         return binding.root
     }

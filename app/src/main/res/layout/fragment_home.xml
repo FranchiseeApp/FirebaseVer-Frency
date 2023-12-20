@@ -20,7 +20,7 @@
             android:background="@drawable/bg_transparent"
             android:iconifiedByDefault="false"
             android:inputType="text"
-            android:queryHint="Search"
+            android:queryHint="@string/search"
             app:layout_constraintEnd_toStartOf="@+id/iv_notification"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -75,7 +75,7 @@
             style="@style/Text.SemiBold.H3"
             android:layout_width="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Franchise Type"
+            android:text="@string/home_subtitle1"
             app:layout_constraintStart_toStartOf="@+id/search_view"
             app:layout_constraintTop_toBottomOf="@+id/dots_indicator" />
 
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="Recomendation"
+            android:text="@string/home_subtitle2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_type" />
 
@@ -137,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Choose Your Franchise"
+            android:text="@string/home_subtitle3"
             app:layout_constraintStart_toStartOf="@+id/tv_title_recomendation"
             app:layout_constraintTop_toBottomOf="@+id/rv_recommendation" />
 
@@ -159,7 +159,7 @@
             android:id="@+id/btn_see_all_franchises"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="See All Franchises"
+            android:text="@string/see_all_franchises"
             app:layout_constraintTop_toBottomOf="@id/rv_franchise"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
