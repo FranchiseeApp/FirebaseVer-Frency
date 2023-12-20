@@ -39,4 +39,8 @@
         <item name="navigationIcon">@drawable/ic_back</item>
     </style>
 
+    <style name="IconColor" parent="Widget.Material3.Button.Icon">
+        <item name="backgroundTint">@color/black</item>
+    </style>
+
 </resources>
