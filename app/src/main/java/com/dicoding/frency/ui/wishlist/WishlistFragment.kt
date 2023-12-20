@@ -56,6 +56,7 @@ class WishlistFragment : Fragment() {
             binding.tvLoginHere.setOnClickListener {
                 startActivity(Intent(requireContext(), LoginActivity::class.java))
             }
+            userId = null.toString()
         }
 
     }
