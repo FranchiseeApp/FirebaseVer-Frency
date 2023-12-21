@@ -42,5 +42,7 @@ Frency is a mobile-based application that aims to solve problems in the business
 
 
 ---
-### Want to public your franchise?
-Let's check our website <a href="https://frency.site"><b>https://frency.site</b></a><br>
+<div>
+    ### Want to public your franchise?
+    Let's check our website <a href="https://frency.site"><b>https://frency.site</b></a><br>
+</div>
