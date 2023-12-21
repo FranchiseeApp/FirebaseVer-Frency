@@ -19,7 +19,15 @@ Frency is a mobile-based application that aims to solve problems in the business
 - **Detail Information :** Get information about prices, conditions, available types and more
 - **Connection :** Connect with admin if you interested
 <div style="text-align: center;">
-    <img src="app/src/main/res/drawable/frency2.png" style="width: 100%;">
+    <img src="app/src/main/res/drawable/frency3.png" style="width: 100%;">
 </div>
 
 # UI Design
+<div style="text-align: center;">
+    <img src="app/src/main/res/drawable/frency4.png" style="width: 200;">
+    <img src="app/src/main/res/drawable/frency5.png" style="width: 200;">
+    <img src="app/src/main/res/drawable/frency6.png" style="width: 200;">
+    <img src="app/src/main/res/drawable/frency7.png" style="width: 200;">
+    <img src="app/src/main/res/drawable/frency8.png" style="width: 200;">
+    <img src="app/src/main/res/drawable/frency9.png" style="width: 200;">
+</div>
