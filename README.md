@@ -25,6 +25,7 @@ Frency is a mobile-based application that aims to solve problems in the business
 # UI Design
 <div align= "center">
     <img src="app/src/main/res/drawable/frency4.png" style="width: 200px;" hspace="20">
+    <img src="app/src/main/res/drawable/frency10.png" style="width: 200px;" hspace="20">
     <img src="app/src/main/res/drawable/frency5.png" style="width: 200px;" hspace="20">
     <img src="app/src/main/res/drawable/frency6.png" style="width: 200px;" hspace="20">
     <img src="app/src/main/res/drawable/frency7.png" style="width: 200px;" hspace="20">
@@ -40,9 +41,8 @@ Frency is a mobile-based application that aims to solve problems in the business
     <img align="left" alt="C" width="26px" src="app/src/main/res/drawable/ic_github.png"/> 
 </div>
 
-
 ---
+
 ### Want to public your franchise?
-<div>
-    Let's check our website <a href="https://frency.site"><b>https://frency.site</b></a><br>
-</div>
+Let's check our website <a href="https://frency.site"><b>https://frency.site</b></a><br>
+
