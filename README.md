@@ -28,6 +28,10 @@ Frency is a mobile-based application that aims to solve problems in the business
     <img src="app/src/main/res/drawable/frency5.png" style="width: 200px;">
     <img src="app/src/main/res/drawable/frency6.png" style="width: 200px;">
     <img src="app/src/main/res/drawable/frency7.png" style="width: 200px;">
+</div>
+
+<div style="text-align: center;">
     <img src="app/src/main/res/drawable/frency8.png" style="width: 200px;">
     <img src="app/src/main/res/drawable/frency9.png" style="width: 200px;">
 </div>
+
