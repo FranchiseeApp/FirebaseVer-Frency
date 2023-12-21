@@ -27,6 +27,7 @@
         android:src="@drawable/image_user_default"
         android:layout_marginTop="35dp"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_banner"
         app:layout_constraintBottom_toTopOf="@id/tv_name_profile"/>
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="47dp"
         android:maxLines="1"
-        tools:text="Ini username"
+        tools:text="I Kadek Arya Surya Saputra"
         android:textColor="@color/white"
         android:textSize="21sp"
         android:textStyle="bold"
@@ -88,7 +89,6 @@
         app:layout_constraintTop_toTopOf="@id/tv_have_acc"
         app:layout_constraintBottom_toBottomOf="@id/tv_have_acc"
         android:focusable="true" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
