@@ -23,15 +23,15 @@ Frency is a mobile-based application that aims to solve problems in the business
 </div>
 
 # UI Design
-<div style="display: flex; justify-content: space-between">
-    <img src="app/src/main/res/drawable/frency4.png" style="width: 200px;">
-    <img src="app/src/main/res/drawable/frency5.png" style="width: 200px;">
-    <img src="app/src/main/res/drawable/frency6.png" style="width: 200px;">
-    <img src="app/src/main/res/drawable/frency7.png" style="width: 200px;">
+<div align= "center">
+    <img src="app/src/main/res/drawable/frency4.png" style="width: 200px;" hspace="20">
+    <img src="app/src/main/res/drawable/frency5.png" style="width: 200px;" hspace="20">
+    <img src="app/src/main/res/drawable/frency6.png" style="width: 200px;" hspace="20">
+    <img src="app/src/main/res/drawable/frency7.png" style="width: 200px;" hspace="20">
 </div>
 
 <div style="display: flex; justify-content: space-evenly">
-    <img src="app/src/main/res/drawable/frency8.png" style="width: 200px;">
-    <img src="app/src/main/res/drawable/frency9.png" style="width: 200px;">
+    <img src="app/src/main/res/drawable/frency8.png" style="width: 200px;" hspace="20">
+    <img src="app/src/main/res/drawable/frency9.png" style="width: 200px;" hspace="20">
 </div>
 
