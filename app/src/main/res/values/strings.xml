@@ -48,7 +48,7 @@
     <string name="pref_key_notify">key_notification</string>
     <string name="pref_notify_name">Notification</string>
     <string name="pref_notify_summary">Reminder when countdown has finished.</string>
-    <string name="edit_account_title">EditProfileActivity</string>
+    <string name="edit_account_title">Edit Profile</string>
 
 
     <string name="_1">+1</string>
@@ -93,6 +93,10 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="edit">Edit</string>
-    <string name="find_franchise">Find Franchise</string>
-    <string name="find_your_dream_franchise">Find your dream franchise</string>
+    <string name="home_subtitle1">Franchise Type</string>
+    <string name="home_subtitle2">Recomendation</string>
+    <string name="home_subtitle3">Choose Your Franchise</string>
+    <string name="see_all_franchises">See All Franchises</string>
+    <string name="search">Search</string>
+    <string name="showing_result">"Showing %1$s result "</string>
 </resources>

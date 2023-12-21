@@ -1,18 +1,12 @@
 package com.dicoding.frency.ui.listimage
 
-import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.frency.R
 import com.dicoding.frency.data.entity.FranchiseData
 import com.dicoding.frency.databinding.ActivityListImageBinding
-import com.dicoding.frency.ui.detail.FranchiseItemAdapter
-import com.dicoding.frency.utils.formatNumber
-import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ListImageActivity : AppCompatActivity() {

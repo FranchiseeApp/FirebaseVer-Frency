@@ -3,22 +3,12 @@ package com.dicoding.frency.data.entity
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-//@Parcelize
-//data class FranchiseItem(
-//    var type: String,
-//    var facility: String,
-//    var price: String
-//) : Parcelable
-
 @Parcelize
 data class FranchiseItem(
     var type: String = "",
     var facility: String = "",
     var price: String = ""
-) : Parcelable {
-    // Konstruktor tanpa argumen
-    constructor() : this("", "", "")
-}
+) : Parcelable
 
 data class FranchiseData(
     val userId: String? = null,
@@ -29,16 +19,7 @@ data class FranchiseData(
     val phoneNumber: String = "",
     val franchiseTypes: List<FranchiseItem> = emptyList(),
     val images: List<String> = emptyList(),
-//    val images: List<String> = listOf<String>("https://picsum.photos/720",
-//        "https://picsum.photos/720",
-//        "https://picsum.photos/720",
-//        "https://picsum.photos/720",
-//        "https://picsum.photos/720",
-//    ), // atau model lain untuk gambar
     var documentId: String = "",
-) {
-    // Konstruktor tanpa argumen
-    constructor() : this("", "", "", "", "", "", emptyList(), emptyList(), "")
-}
+)
 
 data class FranchiseType(val name: String)

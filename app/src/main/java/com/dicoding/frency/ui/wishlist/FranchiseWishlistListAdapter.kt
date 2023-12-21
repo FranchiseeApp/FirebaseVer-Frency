@@ -6,12 +6,10 @@ import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.frency.ui.detail.DetailActivity
 import com.dicoding.frency.data.entity.FranchiseData
-import com.dicoding.frency.databinding.FranchiseCardBinding
 import com.dicoding.frency.databinding.ItemWishlistBinding
 import com.dicoding.frency.utils.formatNumber
 

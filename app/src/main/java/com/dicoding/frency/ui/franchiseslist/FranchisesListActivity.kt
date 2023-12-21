@@ -1,11 +1,13 @@
 package com.dicoding.frency.ui.franchiseslist
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
+import com.dicoding.frency.R
 import com.dicoding.frency.data.entity.FranchiseData
 import com.dicoding.frency.databinding.ActivityFranchisesListBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -64,6 +66,7 @@ class FranchisesListActivity : AppCompatActivity() {
         })
     }
 
+    @SuppressLint("StringFormatMatches")
     private fun loadData() {
         val db = FirebaseFirestore.getInstance()
         val franchisesCollection = db.collection("franchises")
@@ -78,7 +81,7 @@ class FranchisesListActivity : AppCompatActivity() {
                     Log.d("FranchiseData", "Data: $franchiseData")
                     franchiseList.add(franchiseData)
                 }
-                binding.tvResultCount.text = "Showing ${franchiseList.size} result "
+                binding.tvResultCount.text = getString(R.string.showing_result, franchiseList.size)
 
                 val layoutManager = GridLayoutManager(binding.root.context, 2)
                 var recycler = binding.rvFranchises

@@ -3,24 +3,17 @@ package com.dicoding.frency.ui.account
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.preference.ListPreference
-import androidx.preference.PreferenceFragmentCompat
 import com.bumptech.glide.Glide
 import com.dicoding.frency.R
 import com.dicoding.frency.data.entity.User
 import com.dicoding.frency.data.session.SessionManager
 import com.dicoding.frency.databinding.FragmentAccountBinding
 import com.dicoding.frency.ui.login.LoginActivity
-import com.dicoding.frency.ui.login.UserViewModel
-import com.dicoding.frency.utils.DarkMode
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
@@ -28,11 +21,8 @@ class AccountFragment : Fragment() {
 
     private lateinit var binding: FragmentAccountBinding
     private lateinit var sessionManager: SessionManager
-    private val viewModel: UserViewModel by viewModels()
     private lateinit var progressDialog: ProgressDialog
     private lateinit var photoProfile: ImageView
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,13 +68,6 @@ class AccountFragment : Fragment() {
 
 
         binding.tvNameProfile.text = user?.name
-//        if (user?.photoProfileUrl.isNullOrEmpty()) {
-//            binding.ivProfile.setImageResource(R.drawable.image_user_default)
-//        } else {
-//            Glide.with(requireContext()).load(user?.photoProfileUrl).into(binding.ivProfile)
-//        }
-
-
     }
 
     override fun onResume() {

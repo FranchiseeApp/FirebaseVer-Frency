@@ -12,7 +12,6 @@ import com.dicoding.frency.data.entity.FranchiseData
 import com.dicoding.frency.data.entity.User
 import com.dicoding.frency.data.session.SessionManager
 import com.dicoding.frency.databinding.FragmentWishlistBinding
-import com.dicoding.frency.ui.home.RecommendationListAdapter
 import com.dicoding.frency.ui.login.LoginActivity
 import com.google.firebase.firestore.FirebaseFirestore
 

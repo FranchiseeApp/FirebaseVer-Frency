@@ -22,7 +22,6 @@ import com.dicoding.frency.R
 import com.dicoding.frency.data.entity.User
 import com.dicoding.frency.data.session.SessionManager
 import com.dicoding.frency.databinding.ActivityEditProfileBinding
-import com.dicoding.frency.ui.account.AccountFragment
 import com.dicoding.frency.ui.login.UserViewModel
 import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
