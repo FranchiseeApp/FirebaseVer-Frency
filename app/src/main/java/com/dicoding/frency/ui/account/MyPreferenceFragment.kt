@@ -1,6 +1,7 @@
 package com.dicoding.frency.ui.account
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
@@ -64,6 +65,13 @@ class MyPreferenceFragment : PreferenceFragmentCompat() {
             when (newValue) {
                 "en", "in" -> setAppLanguage(newValue.toString())
             }
+            true
+        }
+
+        val findFranchisePreference: Preference? = findPreference("publish_franchise")
+        findFranchisePreference?.setOnPreferenceClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://frency.site/"))
+            startActivity(intent)
             true
         }
     }

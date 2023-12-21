@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
             FranchiseType("Mini market")
         )
         typeAdapter = FranchiseTypeAdapter(franchiseNames) { clickedItem ->
-            val intent = Intent(requireContext(), FranchisesListActivity::class.java)
+            val intent  = Intent(requireContext(), FranchisesListActivity::class.java)
             intent.putExtra("typeFranchises", clickedItem.name)
             Log.d("sendData", "onCreate: ${clickedItem.name}")
             startActivity(intent)

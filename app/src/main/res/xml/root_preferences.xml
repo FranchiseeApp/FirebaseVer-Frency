@@ -2,7 +2,7 @@
 
     <Preference
         app:key="edit_account"
-        app:title="@string/edit_account_title"
+        app:title="@string/edit_your_profile"
         app:icon="@drawable/baseline_edit_24" />
     <ListPreference
         app:key="pref_key_language"
@@ -26,6 +26,12 @@
         app:icon="@drawable/baseline_notifications_24"
         app:summary="@string/pref_notify_summary"
         app:title="@string/pref_notify_name" />
+
+    <Preference
+        app:key="publish_franchise"
+        app:title="Publish Business"
+        app:summary="Publish your franchise here"
+        app:icon="@drawable/baseline_publish_24" />
 
     <Preference
         app:key="logout"
