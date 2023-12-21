@@ -28,19 +28,18 @@ Frency is a mobile-based application that aims to solve problems in the business
     <img src="app/src/main/res/drawable/frency5.png" style="width: 200px;" hspace="20">
     <img src="app/src/main/res/drawable/frency6.png" style="width: 200px;" hspace="20">
     <img src="app/src/main/res/drawable/frency7.png" style="width: 200px;" hspace="20">
-</div>
-
-<div align= "center">
     <img src="app/src/main/res/drawable/frency8.png" style="width: 200px;" hspace="20">
     <img src="app/src/main/res/drawable/frency9.png" style="width: 200px;" hspace="20">
 </div>
 
+<div>
+    ### Languages and Tools
+    <img align="left" alt="HTML5" width="26px" src="app/src/main/res/drawable/ic_kotlin.png" />
+    <img align="left" alt="CSS3" width="26px" src="app/src/main/res/drawable/ic_as.png" />
+    <img align="left" alt="Python" width="26px" src="app/src/main/res/drawable/ic_firebase.png"/> 
+    <img align="left" alt="C" width="26px" src="app/src/main/res/drawable/ic_github.png"/> 
+</div>
 
-### Languages and Tools
-<img align="left" alt="HTML5" width="26px" src="app/src/main/res/drawable/ic_kotlin.png" />
-<img align="left" alt="CSS3" width="26px" src="app/src/main/res/drawable/ic_as.png" />
-<img align="left" alt="Python" width="26px" src="app/src/main/res/drawable/ic_firebase.png"/> 
-<img align="left" alt="C" width="26px" src="app/src/main/res/drawable/ic_github.png"/> 
 
 ---
 ### Want to public your franchise?
